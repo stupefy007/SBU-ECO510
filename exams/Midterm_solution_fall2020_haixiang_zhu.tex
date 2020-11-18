@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\title{ECO 510 - Fall 2020 Midterm Exam}
+\date{October 29, 2020}
+\author{Haixiang Zhu}
+\begin{document}
+    \maketitle
+    \renewcommand{\arraystretch}{1.5}
+    \begin{enumerate}
+        \item 
+        \begin{enumerate}
+            \item The  planner's maximization problem
+            \begin{align*}
+                &\max_{\{c_t,n_t,k_{t+1},h_{t+1}\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^t[\log c_t+B\log(1-n_t)]\\
+                &\begin{array}{r@{\qquad}r@{}l}
+                s.t.&y_t&=c_t+i_t^k+i_t^h\\
+                &y_t&=Ak_t^\alpha(h_tn_t)^{1-\alpha}\\
+                &k_{t+1}&=(1-\delta)k_t+i_t^k\\
+                &h_{t+1}&=(1-\delta)h_t+i_t^h\\
+                &c_t&\ge0\\
+                &0\le n_t&\le 1\\
+                &k_{t+1}&\ge0\\
+                &h_{t+1}&\ge0\\
+                &k_0,h_0&\enspace given
+                \end{array} 
+            \end{align*}
+            Rewriting the equality constraints
+            \begin{equation*}
+                c_t+k_{t+1}+h_{t+1}-(1-\delta)(k_t+h_t)=Ak_t^\alpha(h_tn_t)^{1-\alpha}\quad\forall t
+            \end{equation*}
+            Assume that inequality constraints never bind, i.e.$c_t>0,0<n_t<1,k_{t+1}>0,h_{t+1}>0\quad\forall t$.\\
+            Lagrangian function
+            \begin{equation*}
+                L=\sum_{t=0}^\infty\beta^t[\log c_t+B\log(1-n_t)]-\lambda_t[c_t+k_{t+1}+h_{t+1}-(1-\delta)(k_t+h_t)-Ak_t^\alpha(h_tn_t)^{1-\alpha}]
+            \end{equation*}
+            Necessary conditions\\
+            Equality constraint
+            \begin{equation*}
+                c_t+k_{t+1}+h_{t+1}-(1-\delta)(k_t+h_t)=Ak_t^\alpha(h_tn_t)^{1-\alpha}\quad\forall t
+            \end{equation*}
+            FOC, $\forall t$
+            \begin{align}
+                \frac{\beta^t}{c_t}-\lambda_t&=0\\
+                -\frac{B\beta^t}{1-n_t}+A(1-\alpha)\lambda_t(k_t^\alpha(h_t)^{1-\alpha}n_t^{-\alpha})&=0\\
+                -\lambda_t+\lambda_{t+1}[A\alpha k_{t+1}^{\alpha-1}(h_{t+1}n_{t+1})^{1-\alpha}+(1-\delta)]&=0\\
+                -\lambda_t+\lambda_{t+1}[A(1-\alpha)k_{t+1}^{\alpha}(n_{t+1})^{1-\alpha}h_{t+1}^{-\alpha}+(1-\delta)]&=0
+            \end{align}
+            TVC
+            \begin{align*}
+                &\lim_{T\to\infty}\lambda_Tk_{T+1}=0\\
+                &\lim_{T\to\infty}\lambda_Th_{T+1}=0
+            \end{align*}
+            \item Plugging (1) into (2),(3) and (4)
+            \begin{align}
+                \frac{B}{1-n_t}&=A(1-\alpha)(k_t^\alpha(h_t)^{1-\alpha}n_t^{-\alpha})\tag{$n_t$}\\
+                \frac{1}{c_t}&=\frac{\beta}{c_{t+1}}[A\alpha k_{t+1}^{\alpha-1}(h_{t+1}n_{t+1})^{1-\alpha}+(1-\delta)]\tag{$k_{t+1}$}\\
+                \frac{1}{c_t}&=\frac{\beta}{c_{t+1}}[A(1-\alpha)k_{t+1}^{\alpha}(n_{t+1})^{1-\alpha}h_{t+1}^{-\alpha}+(1-\delta)]\tag{$h_{t+1}$}
+            \end{align}
+            All the LHSs and RHSs above are cost and benefit respectively. \\
+            In specific, for FOC of $(n_t)$ ,a marginal increase in production needs marginal increase in labor $n_t$ and decrease in leisure $(1-n_t)$.\\
+            For FOC of $(k_{t+1})$ ,a marginal increase in $k_{t+1}$ needs marginal increase in $i_t^k$ and decrease in consumption $c_t$.\\
+            For FOC of $(h_{t+1})$ ,a marginal increase in $h_{t+1}$ needs marginal increase in $i_t^h$ and decrease in consumption $c_t$.
+            \item Assume that $n_t=n$, the constant growth rates of all variables at BGP is $g$.
+            From FOC of $(k_{t+1})$ and $(h_{t+1})$
+            \begin{align*}
+                \alpha h_{t+1}=&(1-\alpha)k_{t+1}\\
+                g_c=&\beta\left[A\alpha\left(\frac{\alpha}{1-\alpha}\right)^{\alpha-1}n_{t+1}^{1-\alpha}+(1-\delta)\right]
+            \end{align*}
+            Then we can conclude that $\frac{k_{t+1}}{h_{t+1}}$ is a constant, which implies $g_h=g_k$.\\
+            From  capital accumulation equation $k_{t+1}=(1-\delta)k_t+i_t^k$ and $h_{t+1}=(1-\delta)h_t+i_t^h$, we have $g_k=g_{i^k}$ and $g_h=g_{i^h}$.\\
+            Since production function $y_t=Ak_t^\alpha(h_tn_t)^{1-\alpha}$ is homogeneous of degree 1 and $g_n=1$, we have $g_y=g_k=g_h$.\\
+            After that, from resource constraint $y_t=c_t+i_t^k+i_t^h$, we have $g_c=g_y=g_{i^k}=g_{i^h}$.\\
+            Finally, we have $g_h=g_k=g_c=g_y=g_{i^k}=g_{i^h}=g,g_n=1$, which is consistent with optimality and feasibility at BGP.
+            \item Kaldor's facts
+            \begin{enumerate}
+                \item Real GDP per capita grows at a constant rate.\\
+                This is not true because $g_y=g_k\Rightarrow \frac{y}{k}$ is a constant.
+                \item Capital to labor ratio grows at a constant rate.\\
+                This is not true because $g_k=g_h,g_n=1\Rightarrow \frac{k}{hn}$ is a constant.
+                \item Capital to output ratio is constant.\\
+                This is true because $g_k=g_y\Rightarrow \frac{k}{y}$ is a constant.
+                \item Real rates of reture are constant.\\
+                Let $y_t=F(k_t,h_tn_t)$. Since $F$ is homogeneous of degree 1, $F_1$ and $F_2$ are homogeneous of degree 0.
+                Therefore $r_t=F_1$ and $w_t=F_2$ are constant.
+                \item Capital and labor shares of total income are constant.\\
+                Since $g_k=g_y,r$ is constant, capital shares of total income $\frac{rk}{y}$ is constant.\\
+                Since $g_k=g_y,g_n=1,w$ is constant, labor shares of total income $\frac{whn}{y}$ is constant.\\
+                \item Growth rates vary persistently across countries.\\
+                This fact cannot be verified because other countries may have different macro models in terms of untility functions and constraints.
+            \end{enumerate}
+            \item Denote by $k,h$ physical and human capital in current period respectively. Denote by $k',h'$ physical and human capital in the next period respectively.
+            Denote by $c$ consumption in current period. Denote by $n$ the fraction of time spent working.\\
+            Bellman equation
+            \begin{align*}
+                &V(k,h)=\max_{c,n,k',h'}[\log c+B\log(1-n)+\beta V(k',h')]\\
+                &\begin{array}{r@{\quad}r@{}l}
+                    s.t.&c+k'+h'-(1-\delta)(k+h)&=Ak^\alpha(hn)^{1-\alpha}\\
+                    &c&\ge0\\
+                    &n&\ge0\\
+                    &k'&\ge0\\
+                    &h'&\ge0\\
+                    &k,h&\enspace given
+                \end{array}
+            \end{align*}
+            where state variables are $k,h$ and choice variables are $c,n,k',h'$.
+        \end{enumerate}
+        \item 
+        \begin{enumerate}
+            \item The farmer's maximization problem
+            \begin{align*}
+                &\max_{\{b_t,w_{t+1}\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^t(b_tw_t)^{\frac{1}{2}}\\
+                &\begin{array}{r@{\quad}r@{}l}
+                s.t.&b_t+w_{t+1}&=T=1\\
+                &b_t&\ge0\\
+                &w_{t+1}&\ge0\\
+                &w_0&\enspace given
+                \end{array} 
+            \end{align*}
+            Non-negativity constraints never bind because the utility function satisfy the Inada Condition.
+            Lagrangian function
+            \begin{equation*}
+                L=\beta^t(b_tw_t)^{\frac{1}{2}}-\lambda_t(b_t+w_{t+1}-1)
+            \end{equation*}
+            Equality constraint
+            \begin{equation*}
+                b_t+w_{t+1}=1\quad\forall t
+            \end{equation*}
+            FOC, $\forall t$
+            \begin{align*}
+                \frac{1}{2}\beta^t(w_t)^{\frac{1}{2}}b_t^{-\frac{1}{2}}-\lambda_t&=0\\
+                -\lambda_t+\frac{1}{2}\beta^{t+1}(b_{t+1})^{\frac{1}{2}}w_{t+1}^{-\frac{1}{2}}&=0
+            \end{align*}
+            Euler equation
+            \begin{equation*}
+                \frac{w_t}{1-w_{t+1}}=\beta^2\frac{1-w_{t+2}}{w_{t+1}}
+            \end{equation*}
+            Intutively, the farmer will save wine for considering two period later. In addition $\frac{b_{t+1}}{w_{t+1}}$ grows at a constant rate$\frac{1}{\beta^2}$.
+            \item Denote by $b,w$ consumption of bread and wine in current period respectively. Denote by $w'$ consumption of wine in the next period.\\
+            Bellman equation
+            \begin{align*}
+                &V(w)=\max_{b,w'}[(bw)^\frac{1}{2}+\beta V(w')]\\
+                &\begin{array}{r@{\quad}r@{}l}
+                    s.t.&b+w'&=1\\
+                    &b&\ge0\\
+                    &w'&\ge0\\
+                    &w&\enspace given
+                \end{array}
+            \end{align*}
+            where state variable is $w$ and choice variables are $b,w'$.
+            \item Guess $V_0=0$.
+            \begin{align*}
+                &V_1(w)=\max[(1-w')w]^\frac{1}{2}\\
+                \Rightarrow &w'=0\equiv g_1(w)\\
+                \Rightarrow &V_1(w)=w^\frac{1}{2}
+            \end{align*}
+            Then
+            \begin{align*}
+                &V_2(w)=\max_{w'}\left\{[(1-w')w]^\frac{1}{2}+\beta(w')^\frac{1}{2}\right\}\\
+                \Rightarrow &-\frac{1}{2}(1-w')^{-\frac{1}{2}}w^\frac{1}{2}+\frac{1}{2}\beta(w')^{-\frac{1}{2}}=0\\
+                \Rightarrow &w'=\frac{\beta^2}{w+\beta^2}\equiv g_2(w)\\
+                \Rightarrow &V_2(w)=(w+\beta^2)^\frac{1}{2}
+            \end{align*}
+            After that, a more general guess
+            \begin{equation*}
+                V(w)=\alpha(w+\gamma)^\frac{1}{2}
+            \end{equation*}
+            Verify
+            \begin{equation}
+                V(w)=\max_{w'}\left\{[(1-w')w]^\frac{1}{2}+\beta\alpha(w'+\gamma)^\frac{1}{2}\right\}
+            \end{equation}
+            FOC
+            \begin{align*}
+                &-\frac{1}{2}(1-w')^{-\frac{1}{2}}w^\frac{1}{2}+\frac{1}{2}\alpha\beta(w'+\gamma)^{-\frac{1}{2}}=0\\
+                \Rightarrow&\frac{w}{1-w'}=\frac{\alpha^2\beta^2}{w'+\gamma}\\
+                \Rightarrow&w'=\frac{\alpha^2\beta^2-\gamma w}{w'+\alpha^2\beta^2}
+            \end{align*}
+            Plugging $w'$ into (5)
+            \begin{align*}
+                \alpha(w+\gamma)^\frac{1}{2}&=\left(1-\frac{\alpha^2\beta^2-\gamma w}{w'+\alpha^2\beta^2}\right)^\frac{1}{2}w^\frac{1}{2}+\alpha\beta\left(\frac{\alpha^2\beta^2-\gamma w}{w'+\alpha^2\beta^2}+\gamma\right)^\frac{1}{2}\\
+                &=\frac{(1+\gamma)^\frac{1}{2}w}{(w+\alpha^2\beta^2)^\frac{1}{2}}+\frac{(1+\gamma)^\frac{1}{2}\alpha^2\beta^2}{(w+\alpha^2\beta^2)^\frac{1}{2}}\\
+                &=(1+\gamma)^\frac{1}{2}(w+\alpha^2\beta^2)^\frac{1}{2}
+            \end{align*}
+            Equating coefficients
+            \begin{align*}
+                &\left\{\begin{aligned}
+                    &\alpha=(1+\gamma)^\frac{1}{2}\\
+                    &\gamma=\alpha^2\beta^2
+                \end{aligned}\right.\\
+                \Rightarrow
+                &\left\{\begin{aligned}
+                    &\alpha=\frac{1}{(1-\beta^2)^\frac{1}{2}}\\
+                    &\gamma=\frac{\beta^2}{1-\beta^2}
+                \end{aligned}\right.
+            \end{align*}
+            Plugging $\alpha,\gamma$ into $w'$
+            \begin{equation*}
+                w'=\frac{\beta^2(1-w)}{w+\beta^2(1-w)}
+            \end{equation*}
+            Plugging $\alpha,\gamma$ into (5)
+            \begin{equation*}
+                V(w)=\frac{[w+\beta^2(1-w)]^\frac{1}{2}}{1-\beta^2}
+            \end{equation*}
+        \end{enumerate}
+    \end{enumerate}
+\end{document}
