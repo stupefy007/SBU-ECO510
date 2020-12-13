@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\title{Assignment 2}
+\date{Sepetember 7, 2020}
+\author{Haixiang Zhu}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item C-K Model: 3-period
+    \begin{enumerate}
+        \item Lagrangian Function:
+        \begin{multline*}
+            L=\sum_{t=0}^2\beta^tu(c_t,1-n_t)+\sum_{t=0}^2\lambda_t(k_t^\alpha n_t^{1-\alpha}-c_t-k_{t+1}+(1-\delta)k_t)\\
+            +\sum_{t=0}^2\mu_tk_{t+1}+\sum_{t=0}^2\theta_t n_t+\sum_{t=0}^2\eta_t(1-n_t)+\sum_{t=0}^2\nu_tc_t
+        \end{multline*}
+        Necessary Conditions:
+        \begin{enumerate}
+            \item FOC:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\frac{\partial L}{\partial c_t}=\beta^t\frac{\partial u(c_t,1-n_t)}{\partial c_t}-\lambda_t+\nu_t=0,\text{ for }t=0,1,2\\
+                    &\frac{\partial L}{\partial k_{t+1}}=-\lambda_t+\lambda_{t+1}(\alpha k_{t+1}^{\alpha-1}n_{t+1}^{1-\alpha}+1-\delta)+\mu_t=0,\text{ for }t=0,1\\
+                    &\frac{\partial L}{\partial k_3}=-\lambda_2+\mu_2=0\\
+                    &\frac{\partial L}{\partial n_t}=\beta^t\frac{\partial u(c_t,1-n_t)}{\partial n_t}+\lambda_t(1-\alpha)k_t^\alpha n_t^{-\alpha}+\theta_t-\eta_t=0,\text{ for }t=0,1,2
+                \end{aligned}\right.
+            \end{equation*}
+            \item Equality Constraints:
+            \begin{equation*}
+                k_t^\alpha n_t^{1-\alpha}-c_t-k_{t+1}+(1-\delta)k_t=0,\text{ for }t=0,1,2
+            \end{equation*}
+            \item Inequality Constraints:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &k_{t+1}\ge0,\text{ for }t=0,1,2\\
+                    &n_t\ge0,\text{ for }t=0,1,2\\
+                    &1-n_t\ge0,\text{ for }t=0,1,2\\
+                    &c_t\ge0,\text{ for }t=0,1,2
+                \end{aligned}\right.
+            \end{equation*}
+            \item Multipliers are non-negative:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\lambda_t\ge0,\text{ for }t=0,1,2\\
+                    &\mu_t\ge0,\text{ for }t=0,1,2\\
+                    &\theta_t\ge0,\text{ for }t=0,1,2\\
+                    &\eta_t\ge0,\text{ for }t=0,1,2\\
+                    &\nu_t\ge0,\text{ for }t=0,1,2
+                \end{aligned}\right.
+            \end{equation*}
+            \item Complementary Slackness:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\mu_tk_{t+1}=0,\text{ for }t=0,1,2\\
+                    &\theta_tn_t=0,\text{ for }t=0,1,2\\
+                    &\eta_t(1-n_t)=0,\text{ for }t=0,1,2\\
+                    &\nu_tc_t=0,\text{ for }t=0,1,2
+                \end{aligned}\right.
+            \end{equation*}
+        \end{enumerate}
+        \item Properties of production function $f(k_t,n_t)=k_t^\alpha n_t^{1-\alpha}$, for $t=0,1,2$:
+        \begin{enumerate}
+            \item Positive and diminishing marginal returns of capital and labor:
+            \begin{proof}
+                \begin{align*}
+                    &f_1=\alpha k_t^{\alpha-1}n_t^{1-\alpha}>0,f_{11}=-\alpha(1-\alpha)k_t^{\alpha-2}n_t^{1-\alpha}<0\\
+                    &f_2=(1-\alpha)k_t^{\alpha}n_t^{-\alpha}>0,f_{22}=-\alpha(1-\alpha)k_t^{\alpha}n_t^{-\alpha-1}<0
+                \end{align*}
+            \end{proof}
+            \item Inada Condition:
+            \begin{proof}
+                \begin{align*}
+                    &\lim_{k_t\to0}f_1(k_t,n_t)=\lim_{k_t\to0}\alpha k_t^{\alpha-1}n_t^{1-\alpha}=\infty\\
+                    &\lim_{n_t\to0}f_2(k_t,n_t)=\lim_{n_t\to0}(1-\alpha)k_t^{\alpha}n_t^{-\alpha}=\infty
+                \end{align*}
+            \end{proof}
+        \end{enumerate}
+        Properties of utility function $u(c_t,1-n_t)=\dfrac{c_t^{1-\sigma}}{1-\sigma}+A\dfrac{(1-n_t)^{1-\gamma}}{1-\gamma}$, for $t=0,1,2$:
+        \begin{enumerate}
+            \item Positive and diminishing marginal utility of consumption and leisure:
+            \begin{proof}
+                \begin{align*}
+                    &u_1=c_t^{-\sigma}>0,u_{11}=-\sigma c_t^{-\sigma-1}<0\\
+                    &u_2=A(1-n_t)^{-\gamma}>0,u_{22}=-\gamma(1-n_t)^{-\gamma-1}<0
+                \end{align*}
+            \end{proof}
+            \item Inada Condition:
+            \begin{proof}
+                \begin{align*}
+                    &\lim_{c_t\to0}u_1(c_t,1-n_t)=\lim_{c_t\to0}c_t^{-\sigma}=\infty\\
+                    &\lim_{(1-n_t)\to0}u_2(c_t,1-n_t)=\lim_{(1-n_t)\to0}=A(1-n_t)^{-\gamma}=\infty
+                \end{align*}
+            \end{proof}
+        \end{enumerate}
+        Consider the consumption non-negative constraints $c_t\ge0$, for $t=0,1,2$. These constraints cannot be binding because of the Inada condition $\lim\limits_{c_t\to0}u_1(c_t,1-n_t)=\infty$ and FOC of \([c_t]\).
+        A very small increase of consumption would lead to a huge increase in utility. Therefore $c_t>0$, for $t=0,1,2$.
+        By the complementary slackness conditions, it must be that $\nu_t=0$, for $t=0,1,2$.\\
+        Similarly, the labor constraints $n_t\ge0$ and $1-n_t\ge0$ for $t=0,1,2$ will not bind in any period thanks to the Inada condition $\lim\limits_{n_t\to0}f_2(k_t,n_t)=\infty,\lim\limits_{(1-n_t)\to0}u_2(c_t,1-n_t)=\infty$ and FOC of \([n_t]\).
+        By the complementary slackness conditions, it must be that $\theta_t=\eta_t=0$, for $t=0,1,2$.\\
+        Finally, consider the captial non-negative constraints. $k_1\ge0$ and $k_2\ge0$ are not binding due to the Inada condition $\lim\limits_{k_t\to0}f_1(k_t,n_t)=\infty$ and FOC of \([k_{t+1}]\). In the last period, however, $k_3\ge0$ is binding. 
+        By FOC, we have $\mu_2=\lambda_2=\beta^2u_1(c_2,1-n_2)>0$. By the complementary slackness condition, $k_3=0$.
+        \item Properties of utility function $u(c_t,1-n_t)=\dfrac{c_t^{1-\sigma}}{1-\sigma}$, for $t=0,1,2$:
+        \begin{enumerate}
+            \item Positive and diminishing marginal utility of consumption:
+            \begin{proof}
+                \begin{align*}
+                    &u_1=c_t^{-\sigma}>0\\
+                    &u_{11}=-\sigma c_t^{-\sigma-1}<0
+                \end{align*}
+            \end{proof}
+            \item The utility is irrelevant to the working hour.
+            \begin{proof}
+                \begin{equation*}
+                    \frac{\partial u(c_t,1-n_t)}{\partial n_t}=0
+                \end{equation*}
+            \end{proof}
+        \end{enumerate}
+        The optimal choice of labor is $n_t=1$, for $t=0,1,2$. The only difference between (b) and (c) is whether \(1-n_t\ge0\) is binding or not.\\
+        Intuitive explanation: In part (b), there is a trade-off between consumption and working. 
+        However, the new utility function in part (c) is irrelevant to the working hour, which implies working increases production without reducing utility.
+        Thus, the optimum is utilizing labor as much as possible.
+    \end{enumerate}
+	\item C-K Model: finite horizon
+	\begin{enumerate}
+        \item Lagrangian Function:
+        \begin{multline*}
+            L=\sum_{t=0}^{T}\beta^t\{u(c_t)+\lambda_t[f(k_t)-c_t-i_t]+\gamma_t[(1-\delta)k_t+i_t-k_{t+1}]+\mu_tk_{t+1}+\nu_tc_t\}
+        \end{multline*}
+        Necessary Conditions:
+        \begin{enumerate}
+            \item FOC:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\frac{\partial L}{\partial c_t}=\beta^t[{u}'(c_t)-\lambda_t+\nu_t]=0,\text{ for }t=0,1,\dots,T\\
+                    &\frac{\partial L}{\partial i_t}=\beta^t(-\lambda_t+\gamma_t)=0,\text{ for }t=0,1,\dots,T\\
+                    &\frac{\partial L}{\partial k_{t+1}}=\beta^t[-\gamma_t+\mu_t+\beta\lambda_{t+1}{f}'(k_{t+1})+\beta\gamma_{t+1}(1-\delta)]=0,\text{ for }t=0,1,\dots,T-1\\
+                    &\frac{\partial L}{\partial k_T}=\beta^T(-\lambda_T+\mu_T)=0
+                \end{aligned}\right.
+            \end{equation*}
+            \item Inequality Constraints:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &f(k_t)-c_t-i_t\ge0,\text{ for }t=0,1,\dots,T\\
+                    &(1-\delta)k_t+i_t-k_{t+1}\ge0,\text{ for }t=0,1,\dots,T\\
+                    &k_{t+1}\ge0,\text{ for }t=0,1,\dots,T\\
+                    &c_t\ge0,\text{ for }t=0,1,\dots,T
+                \end{aligned}\right.
+            \end{equation*}
+            \item Multipliers are non-negative:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\beta^t\lambda_t\ge0,\text{ for }t=0,1,\dots,T\\
+                    &\beta^t\gamma_t\ge0,\text{ for }t=0,1,\dots,T\\
+                    &\beta^t\mu_t\ge0,\text{ for }t=0,1,\dots,T\\
+                    &\beta^t\nu_t\ge0,\text{ for }t=0,1,\dots,T
+                \end{aligned}\right.
+            \end{equation*}
+            \item Complementary Slackness:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\beta^t\lambda_t(f(k_t)-c_t-i_t)=0,\text{ for }t=0,1,\dots,T\\
+                    &\beta^t\gamma_t[(1-\delta)k_t+i_t-k_{t+1}]=0,\text{ for }t=0,1,\dots,T\\
+                    &\beta^t\mu_tk_{t+1}=0,\text{ for }t=0,1,\dots,T\\
+                    &\beta^t\nu_tc_t=0,\text{ for }t=0,1,\dots,T
+                \end{aligned}\right.
+            \end{equation*}
+        \end{enumerate}
+        \item Consider consumption non-negative constraints $c_t\ge0,\forall t=0,1,\dots,T$.
+        By Inada condition $\lim\limits_{c_t\to0}{u}'(c_t)=\infty$, $c_t=0,\forall t=0,1,\dots,T$ can never be optimal and it has to be the case that $c_t>0,\forall t=0,1,\dots,T$.
+        By Complementary slackness, this implies that $\nu_t=0,\forall t=0,1,\dots,T$.\\
+        For the resource constraints, by FOC and ${u}'(c_t)>0$, we have $\lambda_t={u}'(c_t)>0,\forall t=0,1,\dots,T$. Thus, by complementary slackness, the resource constraints are binding, i.e. $f(k_t)-c_t-i_t=0,\forall t=0,1,\dots,T$.\\
+        For the capital accumulation constraints, we have $\lambda_t=\gamma_t>0,\forall t=0,1,\dots,T$ from FOC. Therefore, by complementary slackness, the capital accumulation constraints are binding, i.e. $(1-\delta)k_t+i_t-k_{t+1}=0,\forall t=0,1,\dots,T$.\\
+        Eventually, consider the captial non-negative constraints. $k_{t+1}\ge0,\forall t=0,1,\dots,T-1$ is not binding because $f(\cdot)$ satifies Inada condition and FOC of \([k_{t+1}]\) goes to infinity at \(k_{t+1}=0\). Thus, by complementary slackness, $\mu_t=0,\forall t=0,1,\dots,T-1$.
+        However, in the last period, we have $\mu_T=\lambda_T>0$ from FOC. Therefore, by complementary slackness, $k_{T+1}=0$.
+        \item Rewriting the remaining equtions
+        \begin{equation*}
+            \left\{\begin{aligned}
+                &\lambda_t={u}'(c_t),\text{ for }t=0,1,\dots,T\\
+                &\lambda_t=\gamma_t,\text{ for }t=0,1,\dots,T\\
+                &\gamma_t=\beta\lambda_{t+1}{f}'(k_{t+1})+\beta\gamma_{t+1}(1-\delta),\text{ for }t=0,1,\dots,T-1\\
+                &f(k_t)-c_t-i_t=0,\text{ for }t=0,1,\dots,T\\
+                &(1-\delta)k_t+i_t-k_{t+1}=0,\text{ for }t=0,1,\dots,T\\
+                &k_{T+1}=0
+            \end{aligned}\right.
+        \end{equation*}
+        Eliminating multipliers gives
+        \begin{gather*}
+            \left\{\begin{aligned}
+                &c_t=f(k_t)+(1-\delta)k_t-k_{t+1},\text{ for }t=0,1,\dots,T\\
+                &{u}'(c_t)=\beta[{f}'(k_{k+1})+(1-\delta)]{u}'(c_{t+1}),\text{ for }t=0,1,\dots,T-1\\
+                &k_{T+1}=0
+            \end{aligned}\right.\\
+            \Rightarrow
+            \left\{\begin{aligned}
+            &\begin{split}
+                {u}'[f(k_t)+(1-\delta)k_t-k_{t+1}]=&\beta[{f}'(k_{t+1})+(1-\delta)]\\
+                &\cdot{u}'[f(k_{t+1})+(1-\delta)k_{t+1}-k_{t+2}],\forall t=0,1,\dots,T-1
+            \end{split}\\
+            &k_{T+1}=0
+            \end{aligned}\right.
+        \end{gather*}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
