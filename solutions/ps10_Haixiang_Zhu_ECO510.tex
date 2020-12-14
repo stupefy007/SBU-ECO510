@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\title{Assignment 10}
+\date{November 17, 2020}
+\author{Haixiang Zhu}
+\begin{document}
+    \maketitle
+    \renewcommand{\arraystretch}{1.5}
+    \begin{enumerate}
+        \item 
+        \begin{enumerate}
+            \item Homogeneous HH
+            \begin{enumerate}
+                \item Representative HH\\
+                Given initial allocations of capital and assets, $k_0$ and \(b_{-1}\), a competitive equilibrium with sequential trade consists of sequences of allocations $\{c_{t}^\ast,b_{t}^\ast,k_{t+1}^\ast,n_{t}^\ast\}_{t=0}^\infty$ and sequences of prices $\{(q_{t}^b)^\ast,r_{t}^\ast,w_{t}^\ast\}_{t=0}^\infty$ such that
+                \begin{enumerate}[label=\arabic*)]
+                    \item Given prices, allocations are optimal for the household
+                    \begin{align*}
+                        &\{c_{t}^\ast,b_{t}^\ast,k_{t+1}^\ast,n_{t}^\ast\}_{t=0}^\infty=\argmax_{\{c_{t},b_{t},k_{t+1},n_t\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^tu(c_t,1-n_t)\\
+                        &\begin{array}{r@{\quad}r@{}l@{\quad}l}
+                        s.t.&c_{t}+(q_{t}^b)^\ast b_t+k_{t+1}-(1-\delta)k_t&= b_{t-1}+w_{t}^\ast n_t+r_t^\ast k_t&\forall t\\
+                        &c_{t}&\ge0 &\forall t\\
+                        &k_{t+1}&\ge0 &\forall t\\
+                        &0\le n_{t}&\le1 &\forall t\\
+                        &b_{-1}&=0\\
+                        &\lim\limits_{T\to\infty}b_{T}^\ast\prod\limits_{t=0}^T(q_{t}^b)^\ast&\ge0\\
+                        &k_0&\text{ given}
+                        \end{array} 
+                    \end{align*}
+                    \item Given prices, allocations are optimal for the firm
+                    \[\{k_{t}^\ast,n_{t}^\ast\}=\argmax_{k_t,n_t}F(k_t,n_t)-w_{t}^\ast n_t-r_t^\ast k_t\quad\forall t\]
+                    \item All markets clear. For goods market 
+                    \begin{align*}
+                        c_{t}^\ast+k_{t+1}^\ast-(1-\delta)k_t^\ast&=F(k_t^\ast,n_t^\ast)&\forall t\\
+                        \intertext{For asset market}
+                        b_{t}^\ast&=0&\forall t
+                    \end{align*}
+                \end{enumerate}
+                \item 
+                \begin{proof}
+                    If \(k_{t+1}=0\), then return of capital \(r_{t+1}^\ast=F_k(k_{t+1},n_{t+1})\) goes to infinity because of the Inada condition of production function.
+                    So it is never optimal for HH to choose \(k_{t+1}=0\), i.e. non-negativity of capital will not bind in equilibrium.
+                \end{proof}
+                \item FOC
+                \begin{align}
+                    \beta^tu_c(c_t,1-n_t)&=\lambda_{t}\tag{$c_{t}$}\label{c}\\
+                    (q_{t}^b)^\ast\lambda_{t}&=\lambda_{t+1}\tag{$b_{t}$}\label{b}\\
+                    \beta^tu_n(c_t,1-n_t)&=-w_t^\ast\lambda_{t}\tag{$n_{t}$}\label{n}\\
+                    \lambda_{t}&=(1-\delta+r_{t+1}^\ast)\lambda_{t+1}\tag{$k_{t+1}$}\label{k}
+                \end{align}
+                where $\lambda_{t}$ is the multiplier on HH's budget constraint for each period $t$.\\
+                From FOC of \(\eqref{c},\eqref{b}\) and \(\eqref{k}\)
+                \begin{equation}
+                    (q_{t}^b)^\ast=\frac{\beta u_c(c_{t+1},1-n_{t+1})}{u_c(c_t,1-n_t)}=\frac{1}{1-\delta+r_{t+1}^\ast}\label{q}
+                \end{equation}
+                Therefore, the bond price is inverse to the return on capital.\\
+                Incorporating date-0 CE
+                \begin{equation*}
+                    (q_{t}^b)^\ast=\frac{1}{1-\delta+r_{t+1}^\ast}=\frac{\beta u_c(c_{t+1},1-n_{t+1})}{u_c(c_t,1-n_t)}=\frac{p_{t+1}^\ast}{p_t^\ast}
+                \end{equation*}
+                \item From \(\eqref{q}\), we have proved that in the perfect competitive market, we only need one asset to achieve optimum, all the
+                other assets are redundant, and the redundant assets can be priced using the single asset. Thus, the effect of introducing additional assets is indifferent.
+            \end{enumerate}
+            \item Heterogeneous HH
+            \begin{enumerate}
+                \item Given initial allocations of capital and assets, $k_{i,0}$ and \(b_{i,-1}\), a competitive equilibrium with sequential trade consists of
+                sequences of prices $\{(q_{t}^b)^\ast,r_{t}^\ast,w_{t}^\ast\}_{t=0}^\infty$,
+                HH's allocations \(\{\{c_{i,t}^\ast,b_{i,t}^\ast,k_{i,t+1}^\ast,n_{i,t}^\ast\}_{t=0}^\infty\}_{i=1}^2\) and
+                firm's choices \(\{K_{t}^\ast,N_{t}^\ast\}_{t=0}^\infty\) such that
+                \begin{enumerate}[label=\arabic*)]
+                    \item Given prices, allocations are optimal for the household. For $i=1,2$
+                    \begin{align*}
+                        &\{c_{i,t}^\ast,b_{i,t}^\ast,k_{i,t+1}^\ast,n_{i,t}^\ast\}_{t=0}^\infty=\argmax_{\{c_{i,t},b_{i,t},k_{i,t+1},n_{i,t}\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^tu(c_{i,t},1-n_{i,t})\\
+                        &\begin{array}{r@{\quad}r@{}l@{\quad}l}
+                        s.t.&c_{i,t}+(q_{t}^b)^\ast b_{i,t}+k_{i,t+1}-(1-\delta)k_{i,t}&= b_{i,t-1}+w_{t}^\ast n_{i,t}+r_t^\ast k_{i,t}&\forall t\\
+                        &c_{i,t}&\ge0 &\forall t\\
+                        &k_{i,t+1}&\ge0 &\forall t\\
+                        &0\le n_{i,t}&\le1 &\forall t\\
+                        &b_{i,-1}&=0\\
+                        &\lim\limits_{T\to\infty}b_{i,T}^\ast\prod\limits_{t=0}^T(q_{t}^b)^\ast&\ge0\\
+                        &k_{i,0}&\text{ given}
+                        \end{array} 
+                    \end{align*}
+                    \item Given prices, allocations are optimal for the firm
+                    \[\{K_{t}^\ast,N_{t}^\ast\}=\argmax_{K_{t},N_{t}}F(K_{t},N_{t})-w_{t}^\ast N_{t}-r_t^\ast K_{t}\quad\forall t\]
+                    \item All markets clear. For goods market 
+                    \begin{align*}
+                        \sum_i[c_{i,t}^\ast+k_{i,t+1}^\ast-(1-\delta)k_{i,t}^\ast]&=F(K_{t}^\ast,N_{t}^\ast)&\forall t\\
+                        \intertext{For asset market}
+                        \sum_ib_{i,t}^\ast&=0&\forall t\\
+                        \intertext{For labor market}
+                        \sum_in_{i,t}^\ast&=N_{t}^\ast&\forall t\\
+                        \intertext{For capital market}
+                        \sum_ik_{i,t}^\ast&=K_{t}^\ast&\forall t
+                    \end{align*}
+                \end{enumerate}
+                \item 
+                \begin{proof}
+                    If \(k_{1,t+1}=k_{2,t+1}=0\), then \(k_{t+1}=0\). Return of capital \(r_{t+1}^\ast=F_k(k_{t+1},n_{t+1})\) goes to infinity because of the Inada condition of production function.
+                    So it is never optimal for HH to choose \(k_{1,t+1}=k_{2,t+1}=0\).\\
+                Let\((r_{t+1}^b)^\ast\)be the return of bond. In equilibrium, no-arbitrage condition
+                \begin{align*}
+                    r_{t+1}^\ast+1-\delta&=(r_{t+1}^b)^\ast&\forall t
+                \end{align*}
+                which implies the capital multiplier \(\nu_{i,t}=0\), i.e. non-negativity of capital will not bind for one of them only.
+                \end{proof}
+                This would not be true if there were no financial asset available because heterogeneous HH would smooth their consumption via bond market in equilibrium.
+                Then the best each HH could do is \(k_{i,t+1}=0\).
+                \item Given initial allocations of capital holdings $k_{i,0}$, a competitive equilibrium with date-0 trade consists of 
+                sequences of prices \(\{p_{t}^\ast,r_{t}^\ast,w_{t}^\ast\}_{t=0}^\infty\),
+                HH's allocations \(\{\{c_{i,t}^\ast,k_{i,t+1}^\ast,n_{i,t}^\ast\}_{t=0}^\infty\}_{i=1}^2\) and
+                firm's choices \(\{K_{t}^\ast,N_{t}^\ast\}_{t=0}^\infty\) such that
+                \begin{enumerate}[label=\arabic*)]
+                    \item Given prices, allocations are optimal for the household. For $i=1,2$
+                    \begin{align*}
+                        &\{c_{i,t}^\ast,k_{i,t+1}^\ast,n_{i,t}^\ast\}_{t=0}^\infty=\argmax_{\{c_{i,t},k_{i,t+1},n_{i,t}\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^tu(c_{i,t},1-n_{i,t})\\
+                        &\begin{array}{r@{\quad}r@{}l@{\quad}l}
+                        s.t.&\sum\limits_{t=0}^\infty p_t^\ast[c_{i,t}+k_{i,t+1}-(1-\delta)k_{i,t}]&=\sum\limits_{t=0}^\infty p_t^\ast[w_{t}^\ast n_{i,t}+r_t^\ast k_{i,t}]\\
+                        &c_{i,t}&\ge0 &\forall t\\
+                        &k_{i,t+1}&\ge0 &\forall t\\
+                        &0\le n_{i,t}&\le1 &\forall t\\
+                        &k_{i,0}&\text{ given}
+                        \end{array} 
+                    \end{align*}
+                    \item Given prices, allocations are optimal for the firm
+                    \[\{K_{t}^\ast,N_{t}^\ast\}=\argmax_{K_{t},N_{t}}F(K_{t},N_{t})-w_{t}^\ast N_{t}-r_t^\ast K_{t}\quad\forall t\]
+                    \item All markets clear.
+                    \begin{align*}
+                        \sum_i[c_{i,t}^\ast+k_{i,t+1}^\ast-(1-\delta)k_{i,t}^\ast]&=F(K_{t}^\ast,N_{t}^\ast)&\forall t\\
+                        \sum_in_{i,t}^\ast&=N_{t}^\ast&\forall t\\
+                        \sum_ik_{i,t}^\ast&=K_{t}^\ast&\forall t\\
+                    \end{align*}
+                \end{enumerate}
+                \item 
+                \begin{proof}
+                    Equilibrium conditions \(\forall t,i\)
+                    \begin{align}
+                        \beta^tu_{c}(c_{i,t},1-n_{i,t})&=\mu_ip_t^\ast\tag{\(c_{i,t}\)}\label{C}\\
+                        p_{t+1}^\ast(1-\delta+r_{t+1}^\ast)&=p_t^\ast\tag{\(k_{i,{t+1}}\)}\label{K}\\
+                        \beta^tu_{n}(c_{i,t},1-n_{i,t})+\mu_ip_t^\ast w_t^\ast&=0\tag{\(n_{i,t}\)}\label{N}\\
+                        \lim\limits_{T\to\infty}\beta^Tu_{c}(c_{i,T},1-n_{i,T})k_{i,T+1}&=0\tag{TVC}\label{tvc}
+                    \end{align}
+                    where $\mu_i$ is the multiplier on HH i's budget constraint.\\
+                    Assume that \(p_0^\ast=1\). From FOC of \(\eqref{C}\)
+                    \begin{equation}
+                        p_t^\ast=\beta^t\frac{u_{c_{i,t}}}{u_{c_{i,0}}}\label{P}
+                    \end{equation}
+                    Rewrite budget constraint
+                    \begin{align*}
+                        \sum_{t=0}^\infty p_t^\ast c_{i,t}=&\sum_{t=0}^\infty p_t^\ast w_t^\ast n_{i,t}+ \sum_{t=0}^\infty p_t^\ast[(1-\delta+r_t^\ast)k_{i,t}-k_{i,t+1}]\\
+                        =&\sum_{t=0}^\infty p_t^\ast w_t^\ast n_{i,t}+(1-\delta+r_0^\ast)k_{i,0}-p_0^\ast k_{i,1}+p_0^\ast k_{i,1}-\\
+                        &\cdots+\frac{1}{\mu_i}\lim_{T\to\infty}\beta^Tu_{c}(c_{i,T},1-n_{i,T})k_{i,T+1}\tag{using FOC of \(\eqref{K},\eqref{C}\)}
+                    \end{align*}
+                    Substituting \(p_t^\ast\) with \(\eqref{P}\) and using \(\eqref{tvc}\) condition, we obtain
+                    \begin{equation}
+                        \sum_{t=0}^\infty\beta^t\frac{u_{c_{i,t}}}{u_{c_{i,0}}}c_{i,t}=\sum_{t=0}^\infty\beta^t\frac{u_{c_{i,t}}}{u_{c_{i,0}}}w_t^\ast n_{i,t}+(1-\delta+r_0^\ast)k_{i,0}
+                    \end{equation}
+                \end{proof}
+                \item 
+                \begin{proof}
+                    if \(\{c_{t}^\ast,n_{t}^\ast,k_{t+1}^\ast\}_{t=0}^\infty\) satisfies the date-0 trade budget then it is feasible in the sequential trade economy. Since in equilibrium
+                    \[(q_{t}^b)^\ast=\beta\frac{u_{c_{i,t+1}^\ast}}{u_{c_{i,t}^\ast}}\]
+                    then the asset choices can be constructed recursively
+                    \[b_{i,t}^\ast=\frac{u_{c_{i,t}^\ast}}{\beta u_{c_{i,t+1}^\ast}}[b_{i,t-1}^\ast+w_{t}^\ast n_{i,t}^\ast+(1-\delta+r_{t}^\ast)k_{i,t}^\ast-k_{i,t+1}^\ast-c_{i,t}^\ast]\quad\forall t\]
+                    Together with \(b_{1,t}+b_{2,t}=0\)
+                    \[0=b_{i,-1}=\sum_{t=0}^\infty p_t^\ast[c_{i,t}^\ast+k_{i,t+1}^\ast-(1-\delta)k_{i,t}^\ast-w_{t}^\ast n_{i,t}^\ast-r_{t}^\ast k_{i,t}^\ast]+\lim_{T\to\infty}b_{i,T}^\ast\beta^T\frac{u_{c_{i,T}^\ast}}{u_{c_{i,0}^\ast}}\]
+                    and since the date-0 budget constraint is satisfied for this consumption sequence, this implies that
+                    \[\lim_{T\to\infty}b_{i,T}^\ast\beta^Tu_{c_{i,T}^\ast}=0\]
+                    that is, the nPg and TVC conditions are satisfied.
+                \end{proof}
+                If there were no financial asset available, the proof will fail in that there exists some time t when expenditure is larger than income in date-0 trade, which cannot be achieved in sequential trade.
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+\end{document}
