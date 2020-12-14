@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\title{Assignment 7}
+\date{October 18, 2020}
+\author{Haixiang Zhu}
+\begin{document}
+    \maketitle
+    \renewcommand{\arraystretch}{1.2}
+    \begin{enumerate}
+        \item Population growth
+        \begin{enumerate}
+            \item Suppose that the economy reached its BGP at step $t=T$, where the growth rate of capital is constant. The growth rates of aggregated consumption, output, investment,
+            capital, labor and the fraction of time devoted to work at BGP are denoted by $g_C, g_Y, g_I, g_K, g_E\text{ and }g_n$ respectively. \\
+            From the capital accumulation equation, 
+            \begin{equation*}
+                \frac{K_{t+1}}{K_t}=1-\delta+\frac{I_t}{K_t},\quad\forall t\ge T
+            \end{equation*}
+            Since the LHS of the equation above is constant, equal to $g_K$, and $(1-\delta)$ is also constant, $\frac{I_t}{K_t}$ must be constant. 
+            \begin{equation*}
+                \frac{I_t}{K_t}=\frac{I_T}{K_T}\left(\frac{g_I}{g_K}\right)^{t-T},\quad\forall t\ge T
+            \end{equation*}
+            Since $\frac{I_t}{K_t}$ and $\frac{I_T}{K_T}$ are constant, $\frac{g_I}{g_K}$ must be constant, which implies $g_I=g_K$. \\
+            From the resource constraint, 
+            \begin{align*}
+                &C_t+I_t=Y_t,\quad\forall t\ge T\\
+                \Rightarrow&\frac{C_T}{Y_T}\left(\frac{g_C}{g_Y}\right)^{t-T}+\frac{I_T}{Y_T}\left(\frac{g_I}{g_Y}\right)^{t-T}=1,\quad\forall t\ge T
+            \end{align*}
+            If $g_C<g_Y$ and $g_I<g_Y$, then LHS will be falling to $0$ as t increases.\\
+            If $g_C<g_Y$ and $g_I>g_Y$, then LHS will be rising to $\infty$ as t increases.\\
+            If $g_C>g_Y$ and $g_I<g_Y$, then LHS will be rising to $\infty$ as t increases.\\
+            If $g_C>g_Y$ and $g_I>g_Y$, then LHS will be rising to $\infty$ as t increases.\\
+            Therefore, for the resource constraint to hold in a growing economy, none of those cases above are possible and it can only be that $g_C=g_Y=g_I$.\\
+            From the production function and the fact that it has constant returns to scale,
+            \begin{equation*}
+                \frac{Y_t}{K_t}=F(1,\frac{E_tn_t}{K_t})
+            \end{equation*}
+            Since $Y_t$ and $K_t$ grow at equal rates at BGP, the LHS is constant. Thus $\frac{E_tn_t}{K_t}$ must be constant, which implies $g_E=g_K$ and $g_n=1$ because the fraction of time devoted to work cannot be growing infinitely.\\
+            We ignore the trivial condition that $g_n$ could be smaller than $1$, because the marginal production of labor input will be infinite if $n_t=0$. So, it is not rational to have a $g_n$ which is smaller than $1$ at BGP. 
+            Because $\dfrac{E_t}{M_t}$ is constant, $g_E=g$. Eventually,
+            \begin{equation*}
+                \begin{cases}
+                    &g_C=g_Y=g_I=g_K=g_E=g\\
+                    &g_n=1
+                \end{cases}
+            \end{equation*}
+            \item The planer's problem is 
+            \begin{align*}
+                &\max_{\{C_t,M_t,K_{t+1},n_t\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^tu(\frac{C_t}{M_t},1-n_t)=\sum_{t=0}^\infty\beta^t\frac{\left(\frac{C_t}{M_t}v(1-n_t)\right)^{1-\sigma}-1}{1-\sigma}\\
+                & \begin{array}{@{\qquad\quad}r@{\qquad\quad}r@{}l}
+                s.t.&C_t+K_{t+1}-(1-\delta)K_t\,&=F(K_t,E_tn_t)\\
+                 &K_0&\enspace\text{given}
+                \end{array}
+            \end{align*}
+            The first order conditions can be summarized in the following Euler equation (intertemporal condition)
+            \begin{equation*}
+                u_C(\frac{C_t}{M_t},1-n_t)=\beta u_C(\frac{C_{t+1}}{M_{t+1}},1-n_{t+1})[1-\delta+F_K(K_{t+1},E_{t+1}n_{t+1})]
+            \end{equation*}
+            and an intratemporal condition 
+            \begin{equation*}
+                -u_n(\frac{C_t}{M_t},1-n_t)=u_C(\frac{C_t}{M_t},1-n_t)E_tF_2(K_t,E_tn_t)
+            \end{equation*}
+            Plugging $u_C$ and $u_n$,
+            \begin{align}
+                &\frac{M_{t+1}\left(\frac{C_t}{M_t}v(1-n_t)\right)^{-\sigma}v(1-n_t)}{\beta M_t\left(\frac{C_{t+1}}{M_{t+1}}v(1-n_{t+1})\right)^{-\sigma}v(1-n_{t+1})}-1+\delta=F_K(K_{t+1},E_{t+1}n_{t+1})\label{a}\\
+                &\frac{v'(1-n_t)C_t}{v(1-n_t)E_t}=F_2(K_t,E_tn_t)\label{b}
+            \end{align}
+            Since F is homogeneous of degree 1, $F_K$ and $F_2$ are homogeneous of degree 0, which implies $F_K$ and $F_2$ are constant at BGP and $g_K=g_E$, $g_n=1$.
+            Then, in equation \(\eqref{a}\), $\dfrac{C_t}{M_t}$ must be constant, which implies $g_C=g$. Then LHS is equal to $\dfrac{g}{\beta}-1+\delta$. As for equation \(\eqref{b}\), $\dfrac{C_t}{E_t}$ must be constant, which implies $g_C=g_E$.
+            So, we have $g_C=g_K=g_E=g$ and $g_n=1$. Obviously, $g_K=g_I=g_Y$.\\
+            Hence, $g_C=g_Y=g_I=g_K=g_E=g$ and $g_n=1$ are consistent with the planner's optimality conditions. 
+            \item The transformation is
+            \begin{align*}
+                \left\{\begin{aligned}
+                    &c_t=\frac{C_t}{M_t}\\
+                    &i_t=\frac{I_t}{M_t}\\
+                    &k_t=\frac{K_t}{M_t}\\
+                    &y_t=\frac{Y_t}{M_t}
+                \end{aligned}\right.
+            \end{align*}
+            where $c_t$, $i_t$, $k_t$ and $y_t$ are the consumption per capita, the investment per capita, the capital stock per capita and the output per capita respectively.\\
+            Since $g_C=g_Y=g_I=g_K=g_E=g$ and $g_n=1$ at BGP, $c_t$, $i_t$, $k_t$ and $y_t$ remain constant in the long run.
+            Therefore, the transformed problem is
+            \begin{align*}
+                &\max_{\{c_t,k_{t+1},n_t\}_{t=0}^\infty}\sum_{t=0}^\infty\beta^t\frac{\left[c_tv(1-n_t)\right]^{1-\sigma}-1}{1-\sigma}\\
+                & \begin{array}{@{\qquad}r@{\qquad}r@{}l}
+                s.t.&c_t+gk_{t+1}-(1-\delta)k_t\,&=F(k_t,\frac{E_tn_t}{M_t})\\
+                 &k_0&\enspace\text{given}
+                \end{array}
+            \end{align*}
+            \item The economy converges to BGP where $g_C=g_Y=g_I=g_K=g_E=g$ and $g_n=1$.
+            \begin{itemize}
+                \item Since $g_Y=g$, \(\dfrac{Y_t}{M_t}\) is constant. So, GDP per capita does not grow at constant rate.
+                \item Since $g_K=g_E$, $\dfrac{K_t}{E_t}$ is constant. So, capital to labor ratio does not grow at constant rate.
+                \item Since $g_K=g_Y$, $\dfrac{K_t}{Y_t}$ is constant. So, capital to output ratio is constant.
+                \item As demonstrated before, \(F_K\) and \(F_2\) are constant at BGP.
+                \[\begin{dcases}
+                    r_t=F_K(K_t,E_tn_t)\\
+                    w_t=F_2(K_t,E_tn_t)\\
+                \end{dcases}\]
+                which implies real rates of return are constant.
+                \item Since \(g_K=g_E=g_Y\) and real rates of return and real wage rate are constant, \(\dfrac{r_tK_t}{Y_t}\) and \(\dfrac{w_tE_tn_t}{Y_t}\) are constant.
+                So, capital and labor shares of total income are constant.
+                \item Growth rates vary persistently across countries because the utility function and constraints may different in other countires.
+            \end{itemize}
+        \end{enumerate}
+        \item Bellman Guess-and-Verify
+        \begin{enumerate}
+            \item The infinite Bellman equation we are trying to solve is
+            \begin{align*}
+                &V(k)=\max_{c,k'}\{\ln(c)+\beta(A+Bk')\}\\
+                &\begin{array}{r@{\quad}l}
+                    s.t.&c=k^\alpha-k'\ge0\\
+                    &k'\ge0\\
+                    &k\enspace\text{given} 
+                \end{array}
+            \end{align*}
+            Lagrangian Function:
+            \begin{equation*}
+                L=\ln(c)+\beta(A+Bk')+\lambda(k^\alpha-k'-c)+\nu c+\mu k'
+            \end{equation*}
+            Necessary Conditions:
+            \begin{equation*}
+                \left\{\begin{aligned}
+                    &\frac{1}{c}-\lambda+\nu=0\\
+                    &\beta B-\lambda+\mu=0\\
+                    &c=k^\alpha-k'\\
+                    &c\ge0\\
+                    &k'\ge0\\
+                    &\lambda\ge0\\
+                    &\nu\ge0\\
+                    &\mu\ge0\\
+                    &\nu c=0\\
+                    &\mu k'=0
+                \end{aligned}\right.
+            \end{equation*}
+            Since $u(\cdot)$ satisfy the Inada conditions and if $c\to0$, $\frac{1}{c}\to\infty$, which contradicts the FOC of $[c]$, the consumption constraint will not bind, i.e. $c>0$.
+            By the complementary slackness, $\nu=0$.\\
+            Reduced form
+            \begin{equation*}
+                \beta B-\frac{1}{k^\alpha-k'}+\mu=0
+            \end{equation*}
+            When $k'=\mu=0$,
+            \begin{equation*}
+                B=\frac{1}{\beta k^\alpha}
+            \end{equation*}
+            When $k'=0$, $\mu>0$,
+            \begin{align*}
+                &\mu=\frac{1}{k^\alpha}-\beta B>0\\
+                \Rightarrow&B<\frac{1}{\beta k^\alpha}
+            \end{align*}
+            When $k'>0$, $\mu=0$,
+            \begin{align*}
+                &k'=k^\alpha-\frac{1}{\beta B}>0\\
+                \Rightarrow&B>\frac{1}{\beta k^\alpha}
+            \end{align*}
+            Hence,
+            \begin{align*}
+                \left\{\begin{aligned}
+                    &k'>0(not\enspace binding) &&B>\frac{1}{\beta k^\alpha}\\
+                    &k'=0(binding) &&B\le\frac{1}{\beta k^\alpha}
+                \end{aligned}\right.
+            \end{align*}
+            Let $g(k)$ and $g^c(k)$ be the optimal policy function for capital and consumption respectively.
+
+            If $B>\frac{1}{\beta k^\alpha}$,
+            \begin{align*}
+                \left\{\begin{aligned}
+                    &k'=k^\alpha-\frac{1}{\beta B}\equiv g(k)\\
+                    &c=\frac{1}{\beta B}\equiv g^c(k)
+                \end{aligned}\right.
+            \end{align*}
+            If $B\le\frac{1}{\beta k^\alpha}$,
+            \begin{align*}
+                \left\{\begin{aligned}
+                    &k'=0\equiv g(k)\\
+                    &c=k^\alpha\equiv g^c(k)
+                \end{aligned}\right.
+            \end{align*}
+            \item If $B>\frac{1}{\beta k^\alpha}$,
+            \begin{equation*}
+                V^{implied}(k)=-\ln(\beta B)+\beta A+\beta Bk^\alpha-1
+            \end{equation*}
+            By equating coefficients with $V^{guess}(k)$,
+            \begin{align*}
+                &\left\{\begin{aligned}
+                    &-\ln(\beta B)+\beta A-1=A\\
+                    &\beta B=B\\
+                    &\alpha=1
+                \end{aligned}\right.\\
+                \Rightarrow&
+                \begin{dcases}
+                    \beta=1\\
+                    B=e^{-1}
+                \end{dcases}
+            \end{align*}
+            Since $\alpha\in(0,1)$, drop this solution.
+
+            If $B\le\frac{1}{\beta k^\alpha}$,
+            \begin{equation*}
+                V^{implied}(k)=\alpha\ln(k)+\beta A
+            \end{equation*}
+            By equating coefficients with $V^{guess}(k)$,
+            \begin{align*}
+                \left\{\begin{aligned}
+                    &\beta A=A\\
+                    &B=0\\
+                    &\alpha=0
+                \end{aligned}\right.
+            \end{align*}
+            Since $\alpha\in(0,1)$, A and B cannot be found.\\
+            The reason why A and B cannot be found is that the guess of functional form is wrong.
+        \end{enumerate}
+    \end{enumerate}
+\end{document}
