@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\title{Assignment 11}
+\date{November 22, 2020}
+\author{Haixiang Zhu}
+\begin{document}
+    \maketitle
+    \renewcommand{\arraystretch}{1.5}
+    Let \(S_0=\{s_0\},\pi(s_0)=1\)
+    \begin{enumerate}
+        \item Date-0 trade
+        \begin{enumerate}
+            \item Given endowment processes and their corresponding probability distributions \(\{\{w_{i,t}(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) for each \(i\), 
+            a competitive equilibrium with date-0 trade is a set of allocations \(\{\{c_{i,t}^\ast(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) 
+            for each \(i\) and prices \(\{\{p_{t}^\ast(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) such that
+            \begin{enumerate}[label=\arabic*)]
+                \item Given prices, allocations are optimal for each consumer \(i\)
+                \begin{align*}
+                    &\{c_{i,t}^\ast(s_t)\}_{t=0}^1=\argmax_{\{c_{i,t}(s_t)\}_{t=0}^1}\sum_{t=0}^1\sum_{s_t\in S_t}\beta^t\pi(s_t)\frac{[c_{i,t}(s_t)]^{1-\sigma}}{1-\sigma}\\
+                    &\begin{array}{r@{\quad}r@{}l@{\quad}l}
+                    s.t.&\sum\limits_{t=0}^1\sum\limits_{s_t\in S_t}p_t^\ast(s_t)c_{i,t}(s_t)&\,\le\sum\limits_{t=0}^1\sum\limits_{s_t\in S_t}p_t^\ast(s_t)w_{i,t}(s_t)\\
+                    &c_{i,t}(s_t)&\,\ge0 &\forall t
+                    \end{array} 
+                \end{align*}
+                \item The price are such that all markets clear.
+                \begin{align*}
+                    \sum_i c_{i,t}^\ast(s_t)=\sum_i w_{i,t}(s_t)&&\forall t,i\\
+                \end{align*}
+            \end{enumerate}
+            \item All equilibrium conditions
+            \begin{align}
+                \beta^t\pi(s_t)[c_{i,t}^\ast(s_t)]^{-\sigma}&=\lambda_ip_t^\ast(s_t)&\forall t,i\tag{\(c_{i,t}(s_t)\)}\label{c}\\
+                \sum_{t=0}^1\sum\limits_{s_t\in S_t}p_t^\ast(s_t)c_{i,t}(s_t)&=\sum_{t=0}^1\sum\limits_{s_t\in S_t}p_t^\ast(s_t)w_{i,t}(s_t)&\forall i\tag{B.C.}\label{BC}\\
+                \sum_i c_{i,t}^\ast(s_t)&=\sum_i w_{i,t}(s_t)&\forall t,i\tag{M.C.}\label{MC}
+            \end{align}
+            where \(\lambda_i\) is the multiplier on consumer \(i\)'s budget constraint.\\
+            From FOC of \(\eqref{c}\), and note that, \(\pi(s_0)=1,p_0^\ast=1,c_{i,0}^\ast(s_0)=c_{i,0}^\ast\)
+            \begin{align}
+                p_t^\ast(s_t)&=\beta^t\pi(s_t)\left[\frac{c_{i,t}^\ast(s_t)}{c_{i,0}^\ast}\right]^{-\sigma}\label{1}\\
+                c_{i,t}^\ast(s_t)&=\left[\frac{p_t^\ast(s_t)}{\beta^t\pi(s_t)}\right]^{-\frac{1}{\sigma}}c_{i,0}^\ast\label{2}
+            \end{align}
+            From \(\eqref{MC}\) and FOC of \(\eqref{c}\)
+            \begin{equation}
+                \frac{c_{A,t}^\ast(s_t)}{c_{A,0}}=\frac{c_{B,t}^\ast(s_t)}{c_{B,0}}=\frac{c_{A,t}^\ast(s_t)+c_{B,t}^\ast(s_t)}{c_{A,0}+c_{B,0}}=\frac{w_{A,t}(s_t)+w_{B,t}(s_t)}{w_{A,0}+w_{B,0}}\label{3}
+            \end{equation}
+            Plugging \(\eqref{3}\) into \(\eqref{1}\), and let \(w_{A,t}(s_t)+w_{B,t}(s_t)=W_t(s_t),w_{A,0}+w_{B,0}=W_0\)
+            \begin{align}
+                p_t^\ast(s_t)=\beta^t\pi(s_t)\left[\frac{W_t(s_t)}{W_0}\right]^{-\sigma}&,s_t\in S_t\label{4}
+            \end{align}
+            Plugging \(\eqref{2},\eqref{4}\) into \(\eqref{MC}\)
+            \begin{align}
+                \sum_{t}\sum_{s_t}p_t^\ast(s_t)\left[\frac{p_t^\ast(s_t)}{\beta^t\pi(s_t)}\right]^{-\frac{1}{\sigma}}c_{i,0}^\ast&=\sum_{t}\sum_{s_t}p_t^\ast(s_t)w_{i,t}(s_t)\notag\\
+                c_{i,0}^\ast&=\frac{\sum\limits_{t}\sum\limits_{s_t}\beta^t\pi(s_t)\left[\frac{W_t(s_t)}{W_0}\right]^{-\sigma}w_{i,t}(s_t)}{\sum\limits_{t}\sum\limits_{s_t}\beta^t\pi(s_t)\left[\frac{W_t(s_t)}{W_0}\right]^{1-\sigma}}\notag\\
+                c_{i,t}^\ast(s_t)&=\frac{W_t(s_t)}{W_0}c_{i,0}^\ast\notag\\
+                c_{i,t}^\ast(s_t)&=\frac{\sum\limits_{t}\sum\limits_{s_t}\beta^t\pi(s_t)\left[W_t(s_t)\right]^{-\sigma}w_{i,t}(s_t)}{\sum\limits_{t}\sum\limits_{s_t}\beta^t\pi(s_t)\left[W_t(s_t)\right]^{1-\sigma}}W_t(s_t)\label{5}
+            \end{align}
+            where \(s_t\in S_t\)
+            \item Specific case 1\\
+            From \(\eqref{4}\) and \(\eqref{5}\)
+            \[\begin{dcases}
+                p_1(s_1)=\frac{\beta}{2}\\
+                c_{i,0}^\ast=c_{i,1}^\ast(s_1)=5
+            \end{dcases}\quad i\in(A,B),s_1\in S_1\]
+            Intuitively, consumer is indifferent between state \(s_1\) and state \(s'_1\) because there is no uncertainty in terms of aggregate endowment.
+            \item The coeffcient of relative risk aversion is 
+            \begin{align*}
+                \gamma&=-\frac{cu''(c)}{u'(c)}\\
+                &=-\frac{c(-\sigma)c^{-\sigma-1}}{c^{-\sigma}}\\
+                &=\sigma
+            \end{align*}
+            The elasticity of intertemporal substitution is \(\dfrac{1}{\sigma}\), which can be viewed as the inverse of the coeffcient of relative risk aversion.
+            The larger \(\sigma\) is, the less willing is the household to substitute consumption across time.
+            Therefore, the elasticity of intertemporal substitution measures the smoothing incentive over time;
+            the coefficient of relative risk aversion measures the smoothing incentive over state.
+            \item Specific case 2\\
+            \(B\) is better off because increasing probability \(\pi(s'_1)\) yields high benefit to one who owns larger endowment at state \(s'_1\), i.e. \(B\).\\
+            From \(\eqref{4}\) and \(\eqref{5}\)
+            \[\begin{dcases}
+                p_1(s_1)=\frac{\beta}{3}\\
+                p_1(s'_1)=\frac{2\beta}{3}\\
+                c_{A,0}^\ast=c_{A,1}^\ast(s)=\frac{15+14\beta}{3(1+\beta)}\\
+                c_{B,0}^\ast=c_{B,1}^\ast(s)=\frac{15+16\beta}{3(1+\beta)}
+            \end{dcases}\quad s\in S_1\]
+            From the results above, \(B\) gets a higher consumption fraction, which is consistent with the previous arguement. 
+        \end{enumerate}
+        \item Sequential trade
+        \begin{enumerate}
+            \item Given initial distribution of assets \(b_{i,-1}\), endowment processes and their corresponding probability distributions \(\{\{w_{i,t}(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) for each \(i\),
+            a competitive equilibrium with sequential trade is a set of allocations \(\{\{c_{i,t}^\ast(s_t),b_{i,t}^\ast(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) 
+            for each \(i\) and contingent claims prices \(\{\{q_{t}^\ast(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) such that
+        \begin{enumerate}
+            \item Given the price system, the allocation solves each consumer's problem. For \(i=A,B\)
+            \begin{align*}
+                &\{c_{i,t}^\ast(s_t),b_{i,t}^\ast(s_t)\}_{t=0}^1=\argmax_{\{c_{i,t}(s_t),b_{i,t}(s_t)\}_{t=0}^1}\sum_{t=0}^1\sum_{s_t\in S_t}\beta^t\pi(s_t)\frac{[c_{i,t}(s_t)]^{1-\sigma}}{1-\sigma}\\
+                &\begin{array}{r@{\quad}r@{}l@{\quad}l}
+                s.t.&c_{i,t}(s_t)+\sum\limits_{s_t}q_{t}^\ast(s_t)b_{i,t}(s_t)&= b_{i,t-1}(s_t)+w_{i,t}(s_t)&\forall t\\
+                &c_{i,t}(s_t)&\ge0 &\forall t\\
+                &b_{i,-1}&=0\\
+                &b_{i,1}(s_t)&=0
+                \end{array} 
+            \end{align*}
+            \item All markets clear. For goods market 
+            \begin{align*}
+                &\sum_i c_{i,t}^\ast(s_t)=\sum_i w_{i,t}(s_t)&\forall t,\forall s_t\in S_t\\
+                \intertext{For asset market}
+                &\sum_i b_{i,t}^\ast(s_t)=0&\forall t,\forall s_t\in S_t
+            \end{align*}
+        \end{enumerate}
+            \item Since date-0 equilibrium and sequential equilibrium are equivalent, from \(\eqref{4}\) and \(\eqref{5}\)
+            \begin{align}
+                q_{t-1}^\ast(s_t)&=p_t^\ast(s_t)=\beta^t\pi(s_t)\left[\frac{W_t(s_t)}{W_0}\right]^{-\sigma}\label{6}\\
+                b_{i,t-1}^\ast(s_t)&=c_{i,t}^\ast(s_t)-w_{i,t}(s_t)\notag\\
+                &=\frac{\sum\limits_{t}\sum\limits_{s_t}\beta^t\pi(s_t)\left[W_t(s_t)\right]^{-\sigma}w_{i,t}(s_t)}{\sum\limits_{t}\sum\limits_{s_t}\beta^t\pi(s_t)\left[W_t(s_t)\right]^{1-\sigma}}W_t(s_t)-w_{i,t}(s_t)\label{7}
+            \end{align}
+            where \(s_t\in S_t\)
+            \item Specific cases
+            \begin{enumerate}
+                \item 
+                \begin{enumerate}
+                    \item 1c\\
+                    From \(\eqref{6}\) and \(\eqref{7}\)
+                    \[\begin{dcases}
+                        q_0(s)=\frac{\beta}{2}\\
+                        b_{A,0}^\ast(s_1)=b_{B,0}^\ast(s'_1)=-1\\
+                        b_{A,0}^\ast(s'_1)=b_{B,0}^\ast(s_1)=1
+                    \end{dcases}\quad s\in S_1\]
+                    The cost of the portfolio bought by each consumer at time 0 is 0, they are neither net borrower or lender.
+                    \item 1e\\
+                    From \(\eqref{6}\) and \(\eqref{7}\)
+                    \[\begin{dcases}
+                        q_0(s_1)=\frac{\beta}{3}\\
+                        q_0(s'_1)=\frac{2\beta}{3}\\
+                        b_{A,0}^\ast(s_1)=-\frac{3+4\beta}{3(1+\beta)}\\
+                        b_{A,0}^\ast(s'_1)=\frac{3+2\beta}{3(1+\beta)}\\
+                        b_{B,0}^\ast(s_1)=\frac{3+4\beta}{3(1+\beta)}\\
+                        b_{B,0}^\ast(s'_1)=-\frac{3+2\beta}{3(1+\beta)}
+                    \end{dcases}\]
+                    The cost of the portfolio bought by consumer A at time 0 is \(\dfrac{\beta}{3(1+\beta)}>0\), which turns out to be net lender.\\
+                    The cost of the portfolio bought by consumer B at time 0 is \(-\dfrac{\beta}{3(1+\beta)}<0\), which turns out to be net borrower.
+                \end{enumerate}
+                \item For both specific cases in 1c and 1e, the equilibrium price of a discount bond is 
+                \begin{align*}
+                    p_b=\sum_{s_1}\pi(s_1)q_0(s_1)=\beta&&s_1\in S_1
+                \end{align*}
+            \end{enumerate}
+            \item Given initial distribution of asset \(b_{i,-1}\), endowment processes and their corresponding probability distributions \(\{\{w_{i,t}(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) for each \(i\),
+            a competitive equilibrium with sequential trade is a set of allocations \(\{b_{i,t}^\ast,\{c_{i,t}^\ast(s_t)\}_{s_t\in S_t}\}_{t=0}^1\) 
+            for each \(i\) and  risk free bond prices \(q_{b}^\ast)\) at \(t=0\) such that
+                \begin{enumerate}
+                    \item Given the price system, the allocation solves each consumer's problem. For \(i=A,B\)
+                    \begin{align*}
+                        &\{c_{i,t}^\ast(s_t),b_{i,t}^\ast\}_{t=0}^1=\argmax_{\{c_{i,t}(s_t),b_{i,t}\}_{t=0}^1}\sum_{t=0}^1\sum_{s_t\in S_t}\beta^t\pi(s_t)\frac{[c_{i,t}(s_t)]^{1-\sigma}}{1-\sigma}\\
+                        &\begin{array}{r@{\quad}r@{}l@{\quad}l}
+                        s.t.&c_{i,0}+q_{b}^\ast b_{i,0}&= w_{i,0}\\
+                        &c_{i,1}(s_1)&=w_{i,1}(s_1)+b_{i,0}\\
+                        &c_{i,t}(s_t)&\ge0 &\forall t\\
+                        &b_{i,-1}&=0
+                        \end{array} 
+                    \end{align*}
+                    \item All markets clear. For goods market 
+                    \begin{align*}
+                        &\sum_i c_{i,t}^\ast(s_t)=\sum_i w_{i,t}(s_t)&\forall t,\forall s_t\in S_t\\
+                        \intertext{For asset market}
+                        &\sum_i b_{i,t}^\ast=0&\forall t
+                    \end{align*}
+                \end{enumerate}
+                FOC
+                \[\begin{dcases}
+                    (c_{i,0}^\ast)^{\sigma}=\lambda_{i,0}\\
+                    \beta\pi(s_1)[c_{i,1}^\ast(s_1)]^{\sigma}=\lambda_{i,1}(s_1)\\
+                    \lambda_{i,0}q_{b}^\ast=\sum_{s_1}\lambda_{i,1}(s_1)
+                \end{dcases}\quad s_1\in S_1\]
+                where \(\lambda_{i,0},\lambda_{i,1}(s_1)\) are multipliers on budget constraints.\\
+                Intuitively, the bond price will be different because it cannot be traded over state to smooth each consumer's consumption.  
+        \end{enumerate}
+    \end{enumerate}
+\end{document}
