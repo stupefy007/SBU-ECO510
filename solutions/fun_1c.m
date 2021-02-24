@@ -1,4 +1,4 @@
-function F = fun_1c_lastest(x)
+function F = fun_1c(x)
 global T alpha delta beta sigma k0;
 F(1) = (k0^alpha+(1-delta)*k0-x(1))^(-sigma)-beta*((1-delta)+alpha*x(1)^(alpha-1))*(x(1)^alpha+(1-delta)*x(1)-x(2))^(-sigma);
 for t=2:T-1
